@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/list_selector"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <ImageView
+        android:id="@+id/traffic_image"
+        android:layout_width="160dip"
+        android:layout_height="120dip"
+        android:layout_alignParentRight="true"
+        android:contentDescription="@string/app_name" />
+
+    <TextView
+        android:id="@+id/traffic_location"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/traffic_image"
+        android:layout_alignParentLeft="true"
+        android:layout_alignTop="@+id/traffic_image"
+        android:paddingBottom="10dip"
+        android:text="@string/app_name"
+        android:textColor="#040404"
+        android:textSize="16sp"
+        android:ellipsize="none"
+        android:scrollHorizontally="false"
+        android:maxLines="100"
+        android:textStyle="bold"
+        android:typeface="sans" />
+
+</RelativeLayout> 

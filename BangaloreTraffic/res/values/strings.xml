@@ -4,5 +4,7 @@
     <string name="app_name">Bangalore Traffic</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
+    <string name="btis_url_refresh_camera">http://btis.in/camera/update_cameras</string>
+    <string name="btis_url_camera_image">http://btis.in/cameras/images/$CAMERA_NUMBER$.jpg?$TIME$</string>
 
 </resources>
