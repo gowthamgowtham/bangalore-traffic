@@ -3,14 +3,12 @@
  */
 package com.gowtham.bangaloretraffic;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.widget.ImageView;
 
 /**
  * @author Gowtham
@@ -18,11 +16,15 @@ import android.widget.ImageView;
  */
 public class ImageDownloader extends AsyncTask<URL, Void, Bitmap> {
 
-	private ImageView imageView;
+	private TrafficLocation location;
+	private TrafficActivity activity;
+	private int position;
 	private Bitmap bitmap;
 	
-	public ImageDownloader(ImageView imageView) {
-		this.imageView = imageView;
+	public ImageDownloader(TrafficLocation location, TrafficActivity activity, int position) {
+		this.location = location;
+		this.activity = activity;
+		this.position = position;
 	}
 	
 	@Override
@@ -41,7 +43,8 @@ public class ImageDownloader extends AsyncTask<URL, Void, Bitmap> {
 	
 	@Override
 	protected void onPostExecute(Bitmap result) {
-		imageView.setImageBitmap(bitmap);
+		location.setImage(bitmap);
+		activity.updateImage(position, bitmap);
 	}
 
 }

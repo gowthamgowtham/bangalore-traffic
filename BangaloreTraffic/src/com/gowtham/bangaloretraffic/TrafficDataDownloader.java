@@ -9,6 +9,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import android.app.Activity;
 import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.TextView;
@@ -17,9 +18,11 @@ public class TrafficDataDownloader extends AsyncTask<URL, String, List<TrafficLo
 
 	private Throwable error;
 	private TextView progressStatus;
+	private TrafficActivity activity;
 	
-	public TrafficDataDownloader(TextView progressStatus) {
+	public TrafficDataDownloader(TextView progressStatus, TrafficActivity activity) {
 		this.progressStatus = progressStatus;
+		this.activity = activity;
 	}
 	
 	@Override
@@ -91,8 +94,8 @@ public class TrafficDataDownloader extends AsyncTask<URL, String, List<TrafficLo
 	}
 
 	@Override
-	protected void onPostExecute(List<TrafficLocation> trafficList) {
-		
+	protected void onPostExecute(List<TrafficLocation> trafficLocations) {
+		activity.updateList(trafficLocations);
 	}
 	
 	public Throwable getError() {

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -53,8 +54,13 @@ public class TrafficImageListAdapter extends BaseAdapter {
 			trafficImageItem = (TrafficImageItem) view.getTag();
 		}
 		
-		trafficImageItem.location.setText(trafficLocations.get(pos).getName());
-		trafficImageItem.trafficImage.setImageResource(R.drawable.ic_launcher);
+		TrafficLocation trafficLocation = trafficLocations.get(pos);
+		trafficImageItem.location.setText(trafficLocation.getName());
+		Bitmap bmp = trafficLocation.getImage();
+		if(bmp==null)
+			trafficImageItem.trafficImage.setImageResource(R.drawable.ic_launcher);
+		else
+			trafficImageItem.trafficImage.setImageBitmap(bmp);
 		
 		return view;
 	}
