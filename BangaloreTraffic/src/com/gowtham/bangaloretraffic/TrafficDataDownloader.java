@@ -2,6 +2,7 @@ package com.gowtham.bangaloretraffic;
 
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -68,6 +69,7 @@ public class TrafficDataDownloader extends AsyncTask<URL, String, List<TrafficLo
 		
 		publishProgress(result.size() + " locations found");
 
+		Collections.sort(result);
 		return result;
 	}
 	

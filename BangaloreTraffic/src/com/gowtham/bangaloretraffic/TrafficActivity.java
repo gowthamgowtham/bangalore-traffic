@@ -6,15 +6,19 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 import android.app.Activity;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -23,6 +27,7 @@ public class TrafficActivity extends Activity implements OnClickListener, OnItem
 	private ListView trafficImageListView;
 	private TextView statusTextView;
 	private Button refreshButton;
+	private List<TrafficLocation> trafficLocations;
 	
 	public TrafficActivity() {
 		
@@ -40,10 +45,7 @@ public class TrafficActivity extends Activity implements OnClickListener, OnItem
 		refreshButton.setOnClickListener(this);
 		trafficImageListView.setOnItemClickListener(this);
 		
-		
-		updateList(getDummyData());
-		
-		
+		//updateList(getDummyData());
 	}
 
 	private List<Map<String, String>> getDummyData() {
@@ -71,19 +73,25 @@ public class TrafficActivity extends Activity implements OnClickListener, OnItem
 		return true;
 	}
 
-	private void updateList(List<Map<String,String>> trafficDataList) {
-		TrafficImageListAdapter adapter = new TrafficImageListAdapter(this, trafficDataList);
+	private void updateList(List<TrafficLocation> trafficLocations) {
+		trafficImageListView.setAdapter(null);
+		TrafficImageListAdapter adapter = new TrafficImageListAdapter(this, trafficLocations);
 		trafficImageListView.setAdapter(adapter);
 	}
 	
 	private void startDownloadTrafficData() {
 		try {
 			String url = URLs.getLocationListURL(this);
-			new TrafficDataDownloader(statusTextView).execute(new URL(url));
+			AsyncTask<URL,String,List<TrafficLocation>> task = new TrafficDataDownloader(statusTextView).execute(new URL(url));
+			trafficLocations = task.get();
 		} catch (MalformedURLException e) {
-			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch(ExecutionException e) {
+			e.printStackTrace();
+		} catch(InterruptedException e) {
 			e.printStackTrace();
 		}
+		updateList(trafficLocations);
 	}
 
 	@Override
@@ -96,8 +104,16 @@ public class TrafficActivity extends Activity implements OnClickListener, OnItem
 	}
 
 	@Override
-	public void onItemClick(AdapterView<?> arg0, View arg1, int arg2, long arg3) {
-		// TODO Auto-generated method stub
-		
+	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+		TrafficLocation location = trafficLocations.get(position);
+		String url = URLs.getTrafficImageURL(this, location.getId());
+		Log.d("Image", url);
+		ImageView img = (ImageView) view.findViewById(R.id.traffic_image);
+		try {
+			new ImageDownloader(img).execute(new URL(url));
+		} catch (MalformedURLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }

@@ -3,13 +3,15 @@
  */
 package com.gowtham.bangaloretraffic;
 
+import java.util.Comparator;
+
 import android.graphics.Bitmap;
 
 /**
  * @author Gowtham
  *
  */
-public class TrafficLocation {
+public class TrafficLocation implements Comparable<TrafficLocation> {
 	private String name;
 	private double lattitude, longitude;
 	private int id;
@@ -86,6 +88,11 @@ public class TrafficLocation {
 		} else if (!name.equals(other.name))
 			return false;
 		return true;
+	}
+
+	@Override
+	public int compareTo(TrafficLocation another) {
+		return name.compareTo(another.name);
 	}
 	
 }

@@ -53,7 +53,7 @@ public class Downloader {
 	
 	private CharSequence readIt(InputStream stream) throws IOException, UnsupportedEncodingException {
 	    Reader reader = null;
-	    reader = new InputStreamReader(stream, "UTF-8");        
+	    reader = new InputStreamReader(stream);        
 	    StringBuilder sb = new StringBuilder();
 	    char[] buf = new char[1024];
 	    int read;
@@ -62,8 +62,7 @@ public class Downloader {
 	    	if(read < 0)
 	    		break;
 	    	sb.append(buf);
-	    	
-	    }while(true);
+	    } while(true);
 	    
 	    return sb;
 	}

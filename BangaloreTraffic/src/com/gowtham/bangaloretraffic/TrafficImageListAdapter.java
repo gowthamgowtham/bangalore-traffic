@@ -18,17 +18,17 @@ public class TrafficImageListAdapter extends BaseAdapter {
 	public static final String KEY_IMAGE = "image";
 
 	private LayoutInflater layoutInflater;
-	private List<Map<String,String>> dataMap;
+	private List<TrafficLocation> trafficLocations;
 	private TrafficImageItem trafficImageItem;
 	
-	public TrafficImageListAdapter(Activity activity, List<Map<String,String>> dataMap) {
-		this.dataMap = dataMap;
+	public TrafficImageListAdapter(Activity activity, List<TrafficLocation> trafficLocations) {
+		this.trafficLocations = trafficLocations;
 		layoutInflater = (LayoutInflater) activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 	}
 	
 	@Override
 	public int getCount() {
-		return dataMap.size();
+		return trafficLocations.size();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class TrafficImageListAdapter extends BaseAdapter {
 			trafficImageItem = (TrafficImageItem) view.getTag();
 		}
 		
-		trafficImageItem.location.setText(dataMap.get(pos).get(KEY_LOCATION));
+		trafficImageItem.location.setText(trafficLocations.get(pos).getName());
 		trafficImageItem.trafficImage.setImageResource(R.drawable.ic_launcher);
 		
 		return view;

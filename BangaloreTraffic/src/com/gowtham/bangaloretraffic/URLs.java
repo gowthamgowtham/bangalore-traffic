@@ -17,9 +17,9 @@ public class URLs {
 	
 	public static String getTrafficImageURL(Activity activity, int id) {
 		String url = activity.getResources().getString(R.string.btis_url_camera_image);
-		url.replace("$ID$", String.valueOf(id));
+		url = url.replace("$CAMERA_NUMBER$", String.valueOf(id));
 		long epoch = System.currentTimeMillis() / 1000;
-		url.replace("$TIME$", String.valueOf(epoch));
+		url = url.replace("$TIME$", String.valueOf(epoch));
 		return url;
 	}
 

@@ -18,13 +18,18 @@
             android:id="@+id/status_textview"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
             android:text="@string/status_refresh_needed_title" />
 
         <Button
             android:id="@+id/refresh_button"
+            style="?android:attr/buttonStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_centerVertical="true"
+            android:minHeight="16dp"
             android:text="@string/refresh_title" />
 
     </RelativeLayout>
