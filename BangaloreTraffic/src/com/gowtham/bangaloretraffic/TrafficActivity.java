@@ -1,16 +1,7 @@
 package com.gowtham.bangaloretraffic;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.concurrent.ExecutionException;
-
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.Dialog;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
@@ -26,6 +17,14 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
 
 public class TrafficActivity extends Activity implements 
 					OnClickListener, OnItemClickListener, OnLongClickListener {
@@ -55,25 +54,7 @@ public class TrafficActivity extends Activity implements
 		//updateList(getDummyData());
 	}
 
-	private List<Map<String, String>> getDummyData() {
-		List<Map<String,String>> data = new ArrayList<Map<String,String>>();
-		Map<String,String> m1 = new HashMap<String, String>();
-		m1.put(TrafficImageListAdapter.KEY_LOCATION, "KR Pura");
-		Map<String,String> m2 = new HashMap<String, String>();
-		m2.put(TrafficImageListAdapter.KEY_LOCATION, "HRBR Layout");
-		Map<String,String> m3 = new HashMap<String, String>();
-		m3.put(TrafficImageListAdapter.KEY_LOCATION, "Nandini Layout");
-		Map<String,String> m4 = new HashMap<String, String>();
-		m4.put(TrafficImageListAdapter.KEY_LOCATION, "Mahalakshmi Layout, Bangalore");
-		
-		data.add(m1);
-		data.add(m2);
-		data.add(m3);
-		data.add(m4);
-		return data;
-	}
-
-	@Override
+    @Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.traffic, menu);
@@ -135,16 +116,12 @@ public class TrafficActivity extends Activity implements
 	@Override
 	public boolean onLongClick(View v) {
 		int id = v.getId();
-		//if(id == trafficImageListView.getId()) {
-			AlertDialog ad = new AlertDialog.Builder(this).create();
-			ImageView imageView = (ImageView) v.findViewById(R.id.traffic_image);
-			Bitmap bmp = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
-			ad.setIcon(new BitmapDrawable(bmp));
-			ad.show();
-			return true;
-		//}
-		
-		//return false;
+        AlertDialog ad = new AlertDialog.Builder(this).create();
+        ImageView imageView = (ImageView) v.findViewById(R.id.traffic_image);
+        Bitmap bmp = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
+        ad.setIcon(new BitmapDrawable(bmp));
+        ad.show();
+        return true;
 	}
 	
 }
