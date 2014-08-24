@@ -20,10 +20,7 @@ import android.widget.TextView;
 
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.ExecutionException;
 
 public class TrafficActivity extends Activity implements 
@@ -50,8 +47,6 @@ public class TrafficActivity extends Activity implements
 		trafficImageListView.setOnItemClickListener(this);
 		trafficImageListView.setOnLongClickListener(this);
 		trafficImageListView.setLongClickable(true);
-		
-		//updateList(getDummyData());
 	}
 
     @Override
@@ -65,10 +60,6 @@ public class TrafficActivity extends Activity implements
 		trafficImageListView.setAdapter(null);
 		TrafficImageListAdapter adapter = new TrafficImageListAdapter(this, trafficLocations);
 		trafficImageListView.setAdapter(adapter);
-	}
-	
-	public void updateList() {
-		updateList(trafficLocations);
 	}
 	
 	public void updateImage(int index, Bitmap bitmap) {
@@ -115,7 +106,6 @@ public class TrafficActivity extends Activity implements
 
 	@Override
 	public boolean onLongClick(View v) {
-		int id = v.getId();
         AlertDialog ad = new AlertDialog.Builder(this).create();
         ImageView imageView = (ImageView) v.findViewById(R.id.traffic_image);
         Bitmap bmp = ((BitmapDrawable)imageView.getDrawable()).getBitmap();
