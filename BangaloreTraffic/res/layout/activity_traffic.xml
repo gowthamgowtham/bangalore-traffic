@@ -14,12 +14,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" >
 
-        <TextView
-            android:id="@+id/status_textview"
+        <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerVertical="true"
-            android:text="@string/status_refresh_needed_title" />
+            style="?android:attr/buttonStyleSmall"
+            android:text="@string/load_favourites"
+            android:id="@+id/load_favourites"
+            android:minHeight="16dp"
+            android:layout_gravity="center_horizontal" />
 
         <Button
             android:id="@+id/refresh_button"
@@ -30,7 +32,7 @@
             android:layout_alignParentTop="true"
             android:layout_centerVertical="true"
             android:minHeight="16dp"
-            android:text="@string/refresh_title" />
+            android:text="@string/load_all" />
 
     </RelativeLayout>
 

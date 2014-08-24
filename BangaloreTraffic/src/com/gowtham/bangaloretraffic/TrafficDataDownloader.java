@@ -78,7 +78,9 @@ public class TrafficDataDownloader extends AsyncTask<URL, String, List<TrafficLo
 	
 	@Override
 	protected void onProgressUpdate(String... values) {
-		progressStatus.setText(values[0]);
+        if(progressStatus != null) {
+            progressStatus.setText(values[0]);
+        }
 	}
 	
 	private CharSequence extractJSON(CharSequence result) {

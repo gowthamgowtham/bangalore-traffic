@@ -9,5 +9,9 @@
     <string name="refresh_title">Refresh</string>
     <string name="status_refresh_needed_title">Touch Refresh button</string>
     <string name="status_camera_count_title">%d cameras available</string>
+    <string name="menu_add_to_fav">Add to Favourites</string>
+    <string name="menu_remove_from_fav">Remove from Favourites</string>
+    <string name="load_favourites">Load Favourites</string>
+    <string name="load_all">Load All</string>
 
 </resources>
