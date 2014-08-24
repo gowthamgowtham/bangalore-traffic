@@ -1,9 +1,7 @@
 package com.gowtham.bangaloretraffic;
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -18,8 +16,6 @@ import android.widget.AdapterView.OnItemClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -45,7 +41,7 @@ public class TrafficActivity extends Activity implements
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_traffic);
 
-        settings.setContext(this);
+        Settings.setContext(this);
 
 		refreshButton = (Button) findViewById(R.id.refresh_button);
         loadOnlyFavouritesButton = (Button) findViewById(R.id.load_favourites);
@@ -129,15 +125,15 @@ public class TrafficActivity extends Activity implements
 	}
 
     private void loadFavourites(Map<String, ?> allFavourites) {
-        List<TrafficLocation> locations = new ArrayList<TrafficLocation>();
+        trafficLocations = new ArrayList<TrafficLocation>();
         TreeMap<String,?> sortedFavourites = new TreeMap<String, Object>(allFavourites);
         for(Map.Entry<String,?> e : sortedFavourites.entrySet()) {
             String name = e.getKey();
             Integer id = (Integer) e.getValue();
             TrafficLocation location = new TrafficLocation(name, id);
-            locations.add(location);
+            trafficLocations.add(location);
         }
-        updateList(locations);
+        updateList(trafficLocations);
     }
 
     @Override
